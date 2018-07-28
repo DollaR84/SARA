@@ -1,0 +1,56 @@
+{
+
+   "general" :
+   {
+      "setup" : "false",
+      "user" : "Руслан"
+   },
+
+   "speech" :
+   {
+      "rate" : 6
+   },
+
+   "backups" :
+   {
+      "user_data" :
+      {
+         "test" : "d:/user/test"
+      }
+   },
+
+   "weather" :
+   {
+      "key" : "bbb4ad2b8c49c589",
+      "country" : "UA",
+      "city" : "Odessa"
+   },
+
+   "rss" :
+   {
+      "feeds" :
+      [
+         [
+            "Лига новости",
+            "http://news.liga.net/news/rss.xml"
+         ],
+         [
+            "Украинская правда. Новости",
+            "http://www.pravda.com.ua/rus/rss/view_news/"
+         ],
+         [
+            "Украинская правда. Публикации",
+            "http://www.pravda.com.ua/rus/rss/view_pubs/"
+         ],
+         [
+            "Хабрахабр",
+            "http://habrahabr.ru/rss/hubs/all"
+         ],
+         [
+            "ГикТаймс",
+            "http://geektimes.ru/rss/hubs/all"
+         ]
+      ]
+   }
+
+}

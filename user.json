@@ -1,0 +1,155 @@
+{
+   "events":
+   {
+      "file_name": "events.update",
+      "file_path": "extensions",
+      "name_bd": "main"
+   },
+   "birthday":
+   {
+      "file_name": "birthday.update",
+      "file_path": "extensions",
+      "name_bd": "main"
+   },
+   "backups":
+   {
+      "user_data":
+      {
+         "test": "d:/user/test"
+      },
+      "backups_dir": "backups"
+   },
+   "weather":
+   {
+      "key": "bbb4ad2b8c49c589",
+      "country": "UA",
+      "metric": "true",
+      "city": "Odessa",
+      "name_bd": "weather"
+   },
+   "speech":
+   {
+      "rate": 6,
+      "voice": 0,
+      "volume": 80,
+      "nvda": "false"
+   },
+   "hotkeys":
+   {
+      "settings": "ctrl+shift+s",
+      "help": "ctrl+shift+h",
+      "quit": "ctrl+shift+q"
+   },
+   "language":
+   {
+      "code": "ru",
+      "name":
+      {
+         "ru": "\u0440\u0443\u0441\u0441\u043a\u0438\u0439"
+      },
+      "languages_dir": "languages",
+      "help_dir": "help",
+      "features_dir": "features"
+   },
+   "recognition":
+   {
+      "recognition_dir": "recognition",
+      "hmm_name": "hmm",
+      "sounds_dir": "sounds",
+      "jsgf_dir": "jsgf",
+      "dic_name": "dictionary",
+      "variants_dir": "variants",
+      "jsgf_names":
+      [
+         "keyphrase",
+         "confirm",
+         "main",
+         "calendar",
+         "weather",
+         "rss",
+         "open",
+         "notes",
+         "birthday",
+         "events",
+         "backups",
+         "digits"
+      ],
+      "keywords_name": "keywords",
+      "sounds":
+      {
+         "elaboration": "sr_elaboration.wav",
+         "failure": "sr_failure.wav",
+         "disable": "sr_disable.wav",
+         "enable": "sr_enable.wav"
+      }
+   },
+   "notes":
+   {
+      "name_bd": "main"
+   },
+   "rss":
+   {
+      "feeds":
+      [
+         [
+            "\u0423\u043a\u0440\u0430\u0438\u043d\u0441\u043a\u0430\u044f \u043f\u0440\u0430\u0432\u0434\u0430. \u041d\u043e\u0432\u043e\u0441\u0442\u0438",
+            "http://www.pravda.com.ua/rus/rss/view_news/"
+         ],
+         [
+            "\u0423\u043a\u0440\u0430\u0438\u043d\u0441\u043a\u0430\u044f \u043f\u0440\u0430\u0432\u0434\u0430. \u041f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u0438",
+            "http://www.pravda.com.ua/rus/rss/view_pubs/"
+         ],
+         [
+            "\u0425\u0430\u0431\u0440\u0430\u0445\u0430\u0431\u0440",
+            "http://habr.com/rss/hubs/all"
+         ],
+         [
+            "\u041a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u043d\u044b\u0435 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438 \u0434\u043b\u044f \u043d\u0435\u0437\u0440\u044f\u0447\u0438\u0445. \u041e\u0431\u0449\u0438\u0435",
+            "http://www.tiflocomp.ru/index.php?mod=news&act=rss"
+         ],
+         [
+            "\u041f\u0443\u043b\u044c\u0441 \u0432\u0441\u043f\u043e\u043c\u043e\u0433\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0439",
+            "http://www.tiflocomp.ru/news/rss/pulse"
+         ],
+         [
+            "\u041d\u043e\u0432\u043e\u0441\u0442\u0438 \u043f\u043e\u0440\u0442\u0430\u043b\u0430 teflocomp",
+            "http://www.tiflocomp.ru/news/rss/tiflocomp"
+         ],
+         [
+            "\u041d\u043e\u0432\u043e\u0441\u0442\u0438 \u0432\u0441\u043f\u043e\u043c\u043e\u0433\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0439 MS Windows",
+            "http://www.tiflocomp.ru/news/rss/win"
+         ],
+         [
+            "\u041d\u043e\u0432\u043e\u0441\u0442\u0438 \u0432\u0441\u043f\u043e\u043c\u043e\u0433\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0439 Linux",
+            "http://www.tiflocomp.ru/news/rss/nix"
+         ]
+      ],
+      "name_bd": "rss"
+   },
+   "general":
+   {
+      "notice": "notice.wav",
+      "user": "\u0420\u0443\u0441\u043b\u0430\u043d",
+      "version": 1.2,
+      "sounds_dir": "sounds",
+      "setup": "false"
+   },
+   "calendar":
+   {
+      "time_format": 24
+   },
+   "presser":
+   {
+      
+   },
+   "sqlite":
+   {
+      "databases":
+      {
+         "weather": "weather.db",
+         "main": "main.db",
+         "rss": "rss.db"
+      },
+      "databases_dir": "databases"
+   }
+}

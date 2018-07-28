@@ -1,0 +1,136 @@
+{
+
+   "general" :
+   {
+      "setup" : "true",
+      "version" : 1.3,
+      "sounds_dir" : "sounds",
+      "notice" : "notice.wav",
+      "user" : ""
+   },
+
+   "language" :
+   {
+      "languages_dir" : "languages",
+      "code" : "ru",
+      "name" :
+      {
+         "ru" : "русский"
+      },
+      "help_dir" : "help",
+      "features_dir" : "features"
+   },
+
+   "speech" :
+   {
+      "voice" : 0,
+      "rate" : 0,
+      "volume" : 100,
+      "nvda": "false"
+   },
+
+   "recognition" :
+   {
+      "recognition_dir" : "recognition",
+      "hmm_name" : "hmm",
+      "dic_name" : "dictionary",
+      "keywords_name" : "keywords",
+      "jsgf_dir" : "jsgf",
+      "jsgf_names" :
+      [
+         "keyphrase",
+         "confirm",
+         "main",
+         "calendar",
+         "weather",
+         "rss",
+         "open",
+         "notes",
+         "birthday",
+         "events",
+         "backups",
+         "digits"
+      ],
+      "variants_dir" : "variants",
+      "sounds_dir" : "sounds",
+      "sounds" :
+      {
+         "enable" : "sr_enable.wav",
+         "disable" : "sr_disable.wav",
+         "failure" : "sr_failure.wav",
+         "elaboration" : "sr_elaboration.wav"
+      }
+   },
+
+   "sqlite" :
+   {
+      "databases_dir" : "databases",
+      "databases" :
+      {
+         "main" : "main.db",
+         "rss" : "rss.db",
+         "weather" : "weather.db"
+      }
+   },
+
+   "backups" :
+   {
+      "backups_dir" : "backups",
+      "user_data" :
+      {
+      }
+   },
+
+   "hotkeys" :
+   {
+      "quit" : "ctrl+shift+q",
+      "settings" : "ctrl+shift+s",
+      "help" : "ctrl+shift+h"
+   },
+
+   "calendar" :
+   {
+      "time_format" : 24
+   },
+
+   "presser" :
+   {
+   },
+
+   "weather" :
+   {
+      "name_bd" : "weather",
+      "metric" : "true",
+      "key" : "",
+      "country" : "",
+      "city" : ""
+   },
+
+   "rss" :
+   {
+      "name_bd" : "rss",
+      "feeds" :
+      [
+      ]
+   },
+
+   "notes" :
+   {
+      "name_bd" : "main"
+   },
+
+   "birthday" :
+   {
+      "name_bd" : "main",
+      "file_path" : "extensions",
+      "file_name" : "birthday.update"
+   },
+
+   "events" :
+   {
+      "name_bd" : "main",
+      "file_path" : "extensions",
+      "file_name" : "events.update"
+   }
+
+}

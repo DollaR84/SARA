@@ -1,0 +1,9 @@
+#JSGF V1.0;
+grammar confirm;
+
+public <confirm> = <commands>;
+
+<commands> =
+<NULL>|
+да|
+нет;
