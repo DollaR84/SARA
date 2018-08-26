@@ -57,7 +57,7 @@ class Recognizer:
         variants_path = os.path.join(code_path, self.config.variants_dir)
 
         self.variants = {}
-        self.keywords = configs.language(code_path, self.config.keywords_name)
+        self.keywords = configs.language_obj(code_path, self.config.keywords_name)
 
         hmm_path = os.path.join(code_path, self.config.hmm_name)
         dic_file = os.path.join(code_path, self.config.dic_name + '.dic')
