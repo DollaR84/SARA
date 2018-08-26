@@ -349,8 +349,6 @@ class TabWeather(wx.Panel):
         self.config = content['config'].weather
 
         self.metric = wx.CheckBox(self, wx.ID_ANY, gui_phrases.metric)
-        box_key = wx.StaticBox(self, wx.ID_ANY, gui_phrases.box_key)
-        self.key = wx.TextCtrl(box_key, wx.ID_ANY, self.config.key)
         box_country = wx.StaticBox(self, wx.ID_ANY, gui_phrases.box_country)
         self.country = wx.TextCtrl(box_country, wx.ID_ANY, self.config.country)
         box_city = wx.StaticBox(self, wx.ID_ANY, gui_phrases.box_city)
@@ -358,9 +356,6 @@ class TabWeather(wx.Panel):
 
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.Add(self.metric, 0, wx.EXPAND | wx.ALL, 5)
-        key_sizer = wx.StaticBoxSizer(box_key, wx.HORIZONTAL)
-        key_sizer.Add(self.key, 1, wx.EXPAND | wx.ALL, 5)
-        sizer.Add(key_sizer, 0, wx.EXPAND | wx.ALL, 5)
         country_sizer = wx.StaticBoxSizer(box_country, wx.HORIZONTAL)
         country_sizer.Add(self.country, 1, wx.EXPAND | wx.ALL, 5)
         sizer.Add(country_sizer, 0, wx.EXPAND | wx.ALL, 5)

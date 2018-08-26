@@ -74,7 +74,6 @@ class Command:
         page.config.volume = page.volume_slider.GetValue()
         page = self.wnd.weather
         page.config.metric = "true" if page.metric.IsChecked() else "false"
-        page.config.key = page.key.GetValue()
         page.config.country = page.country.GetValue()
         page.config.city = page.city.GetValue()
         page = self.wnd.birthday
