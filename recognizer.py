@@ -9,6 +9,7 @@ Created on 26.11.2016
 
 import logging
 import os
+import pickle
 
 import configs
 
@@ -65,9 +66,9 @@ class Recognizer:
         for name in self.config.jsgf_names:
             file_name = os.path.join(jsgf_path, name + '.jsgf')
             self.voice.set_jsgf_file(name, file_name)
-            file_name = os.path.join(variants_path, name + '.txt')
-            with open(file_name, 'r') as variant:
-                self.variants[name] = variant.readlines()
+            file_name = os.path.join(variants_path, name + '.dat')
+            with open(file_name, 'rb') as variant:
+                self.variants[name] = pickle.load(variant).split('\n')
 
     def finish(self):
         """Finish recognizing and close audio streams."""
