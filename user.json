@@ -21,7 +21,6 @@
    },
    "weather":
    {
-      "key": "bbb4ad2b8c49c589",
       "country": "UA",
       "metric": "true",
       "city": "Odessa",

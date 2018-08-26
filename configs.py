@@ -11,24 +11,29 @@ import copy
 import json
 import logging
 import os
+import pickle
 
 from gui.settings import Settings
 from gui.windows import AppWindow
 
 
-def __load(path):
+def __load_json(path):
+    """Load data from json file."""
+    with open(path, 'r') as json_file:
+        json_data = json.load(json_file)
+        return __load(json_data)
 
+
+def __load(data):
+    """Construct class from json data."""
     temp_class_1 = type('__Config', (), {})
     config = temp_class_1()
-
-    with open(path) as json_file:
-        json_data = json.load(json_file)
-        for name, settings in json_data.items():
-            temp_class_2 = type('__' + name, (), {})
-            setattr(config, name, temp_class_2())
-            section = getattr(config, name)
-            for key, value in settings.items():
-                setattr(section, key, value)
+    for name, settings in data.items():
+        temp_class_2 = type('__' + name, (), {})
+        setattr(config, name, temp_class_2())
+        section = getattr(config, name)
+        for key, value in settings.items():
+            setattr(section, key, value)
 
     return config
 
@@ -39,7 +44,7 @@ def update(config, path):
     log.info('load user config: ' + path)
 
     new_config = copy.deepcopy(config)
-    with open(path) as json_file:
+    with open(path, 'r') as json_file:
         user_config = json.load(json_file)
         for name, settings in user_config.items():
             section = getattr(new_config, name)
@@ -57,8 +62,19 @@ def default():
     log.info('load default settings...')
 
     filename = 'default.json'
-    config = __load(filename)
+    config = __load_json(filename)
     return config
+
+
+def default_obj():
+    """Load default config from binary file."""
+    log = logging.getLogger()
+    log.info('load default settings from binary file...')
+
+    filename = 'default.dat'
+    with open(filename, 'rb') as settings_file:
+        config = pickle.load(settings_file)
+        return __load(config)
 
 
 def language(pathdir, code):
@@ -69,8 +85,21 @@ def language(pathdir, code):
     filename = code + '.json'
     path = os.path.join(pathdir, filename)
 
-    lang = __load(path)
+    lang = __load_json(path)
     return lang
+
+
+def language_obj(pathdir, code):
+    """Load language from binary file base."""
+    log = logging.getLogger()
+    log.info('load language: %s from binary file...' % code)
+
+    filename = code + '.dat'
+    path = os.path.join(pathdir, filename)
+
+    with open(path, 'rb') as lang_file:
+        lang = pickle.load(lang_file)
+        return __load(lang)
 
 
 def open_settings(ptr, config):
@@ -90,7 +119,7 @@ def open_settings(ptr, config):
         ptr.speech.speak(ptr.phrases.general.good)
     else:
         new_config.general.setup = 'false'
-        config = copy.deepcopy(new_config)
+        config = __del_system_data(copy.deepcopy(new_config))
         json_data = {}
         for name, section in config.__dict__.items():
             json_data[name] = section.__dict__
@@ -124,3 +153,25 @@ def offset(text):
             new_line = ' '*tab + old_line
         new_lines.append(new_line)
     return '\n'.join(new_lines)
+
+
+def __del_system_data(config):
+    """Delete all system data with not user access."""
+    del config.__dict__['recognition']
+    del config.__dict__['sqlite']
+    del config.__dict__['hotkeys']
+    del config.__dict__['presser']
+    del config.__dict__['notes']
+    del config.general.__dict__['version']
+    del config.general.__dict__['sounds_dir']
+    del config.general.__dict__['notice']
+    del config.language.__dict__['languages_dir']
+    del config.language.__dict__['name']
+    del config.language.__dict__['help_dir']
+    del config.language.__dict__['features_dir']
+    del config.weather.__dict__['name_bd']
+    del config.weather.__dict__['key']
+    del config.rss.__dict__['name_bd']
+    del config.birthday.__dict__['name_bd']
+    del config.events.__dict__['name_bd']
+    return config

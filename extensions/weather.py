@@ -91,6 +91,8 @@ def get_today(ptr, config, arg, lang):
     log.info('get weather on today...')
 
     weather = __get(ptr, config, 'today', None, lang)
+    if weather is None:
+        return
     if 'pop' == arg:
         __speak_pop(ptr, config, weather)
     elif 'wind' == arg:
@@ -111,6 +113,8 @@ def get_tomorrow(ptr, config, arg, lang):
     log.info('get weather on tomorrow...')
 
     weather = __get(ptr, config, 'tomorrow', None, lang)
+    if weather is None:
+        return
     if 'pop' == arg:
         __speak_pop(ptr, config, weather)
     elif 'wind' == arg:
@@ -315,6 +319,8 @@ def __get(ptr, config, day, arg, lang):
     log = logging.getLogger()
     log.info('get day and period of weather')
     weather = __get_data(ptr, config, lang)
+    if weather.get('simple', None) is None:
+        return None
 
     if 'today' == day:
         if 'day' == arg:
@@ -356,20 +362,31 @@ def __get_data(ptr, config, lang):
     log = logging.getLogger()
     log.info('get data and set weather struct')
     weather = {}
+    if '' == config.country:
+        ptr.speech.speak(ptr.phrases.weather.country_empty)
+        return weather
+    if '' == config.city:
+        ptr.speech.speak(ptr.phrases.weather.city_empty)
+        return weather
     url = '''http://api.wunderground.com/api/%s/forecast/lang:%s/q/%s/%s.json
           ''' % (config.key, lang.upper(), config.country.upper(), config.city)
 
     if __need_update(ptr, config):
         log.info('get data weather from wunderground')
-        http_data = urllib.request.urlopen(url)
-        data = json.loads(http_data.read().decode('utf8'))
-        http_data.close()
+        try:
+            http_data = urllib.request.urlopen(url)
+        except:
+            ptr.speech.speak(ptr.phrases.weather.net_error)
+            return weather
+        else:
+            data = json.loads(http_data.read().decode('utf8'))
+            http_data.close()
 
-        txt = json.dumps(data['forecast']['txt_forecast']['forecastday'])
-        weather['txt'] = json.loads(txt.replace('null', '0'))
-        simple = json.dumps(data['forecast']['simpleforecast']['forecastday'])
-        weather['simple'] = json.loads(simple.replace('null', '0'))
-        __set_data(ptr, config, weather)
+            txt = json.dumps(data['forecast']['txt_forecast']['forecastday'])
+            weather['txt'] = json.loads(txt.replace('null', '0'))
+            simple = json.dumps(data['forecast']['simpleforecast']['forecastday'])
+            weather['simple'] = json.loads(simple.replace('null', '0'))
+            __set_data(ptr, config, weather)
     else:
         bd_data = ptr.bd.get_other_bd(config.name_bd, 'SELECT * FROM txt_data')
         weather['txt'] = [json.loads(data[1]) for data in bd_data]

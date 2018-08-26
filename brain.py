@@ -36,7 +36,7 @@ class Brain:
         self.log = logging.getLogger()
         self.log.info('initialize brain...')
 
-        self.config = configs.default()
+        self.config = configs.default_obj()
         if os.path.exists('user.json'):
             self.config = configs.update(self.config, 'user.json')
 
@@ -44,8 +44,8 @@ class Brain:
 
         self.speech.speak("Load language: " +
                           self.config.language.name[self.config.language.code])
-        self.phrases = configs.language(self.config.language.languages_dir,
-                                        self.config.language.code)
+        self.phrases = configs.language_obj(self.config.language.languages_dir,
+                                            self.config.language.code)
         self.help = Help(self.config.language, self.phrases)
         self.speech.speak(self.phrases.general.start)
 
