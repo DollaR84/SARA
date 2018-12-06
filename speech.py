@@ -26,6 +26,7 @@ class Speech:
 
         self.config = config
 
+        self.SVSFlagsAsync = 1
         self.speaker = win32com.client.Dispatch("Sapi.SpVoice")
         self.voices = self.speaker.GetVoices()
         self.voices_ids = [voice.Id for voice in self.voices]
@@ -74,8 +75,10 @@ class Speech:
         self.log.info('change speak out: nvda or sapi...')
         if self.nvda and not self.nvda_error:
             self.speak = self.speak_nvda
+            self.abort = self.abort_nvda
         else:
             self.speak = self.speak_sapi
+            self.abort = self.abort_sapi
 
     def speak_nvda(self, phrase):
         """Speak phrase in nvda screen reader."""
@@ -89,7 +92,18 @@ class Speech:
     def speak_sapi(self, phrase):
         """Speak phrase in sapi voice."""
         self.log.info('speak phrase: %s' % phrase)
-        self.speaker.Speak(phrase)
+        self.speaker.Speak(phrase, self.SVSFlagsAsync)
+        time.sleep(0.1)
+
+    def abort_nvda(self):
+        """Abort speak nvda."""
+        self.log.info('abort speak nvda...')
+        self.sLib.nvdaController_cancelSpeech()
+
+    def abort_sapi(self):
+        """Abort speak sapi."""
+        self.log.info('abort speak sapi...')
+        self.speaker.skip("Sentence", sys.maxsize)
 
     def play(self, sound):
         """Play sound in sound lib."""

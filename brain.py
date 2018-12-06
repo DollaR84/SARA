@@ -101,7 +101,9 @@ class Brain:
 
     def check(self, text):
         """Check need actions for use."""
-        if 'help' == text:
+        if 'abort' == text:
+            self.speech.abort()
+        elif 'help' == text:
             self.help.show_help()
         elif 'help_browser' == text:
             self.help.show_browser()
